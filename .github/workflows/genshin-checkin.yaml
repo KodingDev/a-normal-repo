@@ -1,0 +1,26 @@
+# Can be anything you want
+name: Genshin check-in
+
+on:
+  # Allow manual start
+  workflow_dispatch:
+  # Run job on 16:15UTC/00:15CST daily
+  schedule:
+  - cron: "15 16 * * *"
+
+jobs:
+  # check-in now
+  check-in:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: ahmubashshir/genshin-check-in@master
+      with:
+        # MiHoYo Account ID, required.
+        id:    ${{ secrets.MHYACID }}
+        # MiHoYo UUID, required.
+        uuid:  ${{ secrets.MHYUUID }}
+        # Auth Token, required.
+        token: ${{ secrets.MHYTOKEN }}
+        #   Server name, ENUM.
+        #   Allowed Values: ASIA, EUROPE, HONGKONG, USA
+        region: ASIA
